@@ -1,0 +1,305 @@
+
+/* ==========================================
+   KURIO — PÁGINA DE MERCADO
+   ========================================== */
+
+.market-page {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 60px;
+}
+
+/* TÍTULO */
+
+.market-page .market-heading {
+  margin: 24px 0;
+}
+
+.market-page .market-heading h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.market-page .market-heading p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ==========================================
+   CAMPO DE PESQUISA
+   ========================================== */
+
+.market-page .market-search {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  max-width: 680px;
+  min-height: 54px;
+
+  margin: 0 0 32px;
+  padding: 6px 7px 6px 16px;
+
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.market-page .market-search > svg {
+  display: block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+}
+
+.market-page .market-search input {
+  display: block;
+  flex: 1 1 auto;
+
+  width: auto;
+  min-width: 0;
+  min-height: 38px;
+
+  margin: 0;
+  padding: 8px 0;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: var(--text);
+  font-size: 13px;
+}
+
+.market-page .market-search button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+  padding: 9px 22px;
+}
+
+/* ==========================================
+   LAYOUT: FILTROS + RESULTADOS
+   ========================================== */
+
+.market-page .market-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 310px)
+    minmax(0, 1fr);
+
+  align-items: start;
+  gap: 36px;
+  width: 100%;
+  min-width: 0;
+}
+
+.market-page .catalog-sidebar {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+.market-page .market-results {
+  min-width: 0;
+  width: 100%;
+}
+
+/* FILTROS */
+
+.market-page .filter-panel {
+  padding: 24px 20px;
+  background: var(--panel);
+}
+
+.market-page .filter-panel button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ABAS E ORDENAÇÃO */
+
+.market-page .catalog-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.market-page .catalog-tabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  min-width: 0;
+}
+
+.market-page .catalog-tabs button {
+  white-space: nowrap;
+}
+
+.market-page .market-result-count {
+  margin: 4px 0 18px;
+}
+
+/* CARDS */
+
+.market-page .catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 20px;
+  row-gap: 32px;
+  width: 100%;
+}
+
+.market-page .catalog-grid .nft-card {
+  min-width: 0;
+}
+
+.market-page .catalog-grid .nft-thumb {
+  width: 100%;
+}
+
+/* PAGINAÇÃO */
+
+.market-page .pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 40px 0;
+}
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .market-page .market-layout {
+    grid-template-columns:
+      minmax(190px, 235px)
+      minmax(0, 1fr);
+
+    gap: 22px;
+  }
+
+  .market-page .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+
+  .market-page .catalog-tabs {
+    gap: 12px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 700px) {
+  .market-page {
+    padding-bottom: 110px;
+  }
+
+  .market-page .market-heading {
+    margin: 20px 0;
+  }
+
+  .market-page .market-heading h1 {
+    font-size: 21px;
+  }
+
+  .market-page .market-heading p {
+    font-size: 12px;
+  }
+
+  .market-page .market-search {
+    display: flex !important;
+    min-height: 48px;
+    margin-bottom: 24px;
+    padding: 5px 6px 5px 12px;
+    gap: 8px;
+  }
+
+  .market-page .market-search input {
+    font-size: 12px;
+  }
+
+  .market-page .market-search button {
+    min-height: 38px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .market-page .market-layout {
+    display: block;
+  }
+
+  /* FILTROS OCULTOS ATÉ ABRIR O PAINEL */
+
+  .market-page .catalog-sidebar {
+    display: none !important;
+  }
+
+  .market-page .catalog-sidebar.mobile-open {
+    display: block !important;
+    position: fixed;
+    inset: 10% 22px 105px;
+    z-index: 40;
+    overflow-y: auto;
+    background: var(--panel);
+    box-shadow: 0 0 0 600px #100b09b8;
+  }
+
+  /* ABAS */
+
+  .market-page .catalog-topline {
+    display: block;
+  }
+
+  .market-page .catalog-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .market-page .catalog-tabs button {
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  /* DUAS COLUNAS DE NFTs */
+
+  .market-page .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 12px;
+  }
+
+  /* MOSTRAR TODOS OS NFTs DA PÁGINA */
+
+  .market-page .catalog-grid > .nft-card:nth-child(n + 7) {
+    display: block;
+  }
+
+  .market-page .pagination {
+    display: flex !important;
+    margin: 28px 0 55px;
+  }
+}

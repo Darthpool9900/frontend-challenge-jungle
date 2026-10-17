@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-10-17T01:34:52.242Z",
+  "baseURL": "http://127.0.0.1:4173",
+  "nodeVersion": "v24.14.1",
+  "lighthousePackage": "lighthouse@12",
+  "results": [
+    {
+      "page": "home",
+      "profile": "mobile",
+      "median": {
+        "performance": 76,
+        "accessibility": 100,
+        "bestPractices": 96,
+        "seo": 92,
+        "lcpMs": 4688.9114,
+        "cls": 0.005050882880918305,
+        "tbtMs": 55.5
+      },
+      "runs": [
+        {
+          "performance": 75,
+          "accessibility": 100,
+          "bestPractices": 96,
+          "seo": 92,
+          "lcpMs": 4699.5978,
+          "cls": 0.005050882880918305,
+          "tbtMs": 66.5
+        },
+        {
+          "performance": 76,
+          "accessibility": 100,
+          "bestPractices": 96,
+          "seo": 92,
+          "lcpMs": 4619.8004,
+          "cls": 0.005050882880918305,
+          "tbtMs": 51.5
+        },
+        {
+          "performance": 76,
+          "accessibility": 100,
+          "bestPractices": 96,
+          "seo": 92,
+          "lcpMs": 4688.9114,
+          "cls": 0.005050882880918305,
+          "tbtMs": 55.5
+        }
+      ]
+    },
+    {
+      "page": "home",
+      "profile": "desktop",
+      "median": {
+        "performance": 97,
+        "accessibility": 98,
+        "bestPractices": 100,
+        "seo": 92,
+        "lcpMs": 1122.2172,
+        "cls": 0.001004258288781385,
+        "tbtMs": 0
+      },
+      "runs": [
+        {
+          "performance": 96,
+          "accessibility": 98,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 1199.2662,
+          "cls": 0.001004258288781385,
+          "tbtMs": 1
+        },
+        {
+          "performance": 97,
+          "accessibility": 98,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 1060.7768,
+          "cls": 0.001004258288781385,
+          "tbtMs": 0
+        },
+        {
+          "performance": 97,
+          "accessibility": 98,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 1122.2172,
+          "cls": 0.001004258288781385,
+          "tbtMs": 0
+        }
+      ]
+    },
+    {
+      "page": "detail",
+      "profile": "mobile",
+      "median": {
+        "performance": 77,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 92,
+        "lcpMs": 4548.4038,
+        "cls": 0.0009549196758714738,
+        "tbtMs": 46.5
+      },
+      "runs": [
+        {
+          "performance": 77,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 4550.2,
+          "cls": 0.0009549196758714738,
+          "tbtMs": 46.5
+        },
+        {
+          "performance": 77,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 4548.4038,
+          "cls": 0.0009549196758714738,
+          "tbtMs": 52
+        },
+        {
+          "performance": 77,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 4529.3586,
+          "cls": 0.0009549196758714738,
+          "tbtMs": 44.5
+        }
+      ]
+    },
+    {
+      "page": "detail",
+      "profile": "desktop",
+      "median": {
+        "performance": 97,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 92,
+        "lcpMs": 1077.9352,
+        "cls": 0.0004775625988074314,
+        "tbtMs": 0
+      },
+      "runs": [
+        {
+          "performance": 97,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 1054.6504,
+          "cls": 0.0003392522659489408,
+          "tbtMs": 0
+        },
+        {
+          "performance": 97,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 1077.9352,
+          "cls": 0.0004775625988074314,
+          "tbtMs": 0
+        },
+        {
+          "performance": 97,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 92,
+          "lcpMs": 1080.6272,
+          "cls": 0.0004775625988074314,
+          "tbtMs": 0
+        }
+      ]
+    }
+  ]
+}
