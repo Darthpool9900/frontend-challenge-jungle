@@ -15,7 +15,7 @@ export const cartService = {
     return data
   },
 
-  
+
   // Mesclar carrinho visitante após autenticação
   async mergeGuest(): Promise<CartMergeResponse> {
     const { data } = await api.post<CartMergeResponse>(

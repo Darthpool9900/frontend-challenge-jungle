@@ -12,10 +12,10 @@ export function shareOrder(previous: unknown, incoming: OrderResponse): OrderRes
 export function shareOrders(previous: unknown, incoming: OrdersResponse): OrdersResponse {
   const old = previous as OrdersResponse | undefined
   return { orders: incoming.orders.map(order => shareOrder(
-    old?.orders.find(item => item.id === order.id) ? { order: old.orders.find(item => item.id === order.id)! } : undefined,
-    { order },
-  ).order) }
-}
+      old?.orders.find(item => item.id === order.id) ? { order: old.orders.find(item => item.id === order.id)! } : undefined,
+          { order },
+    ).order) }
+  }
 export function belongsToSession(client: QueryClient, response: OrderResponse) {
   return client.getQueryData<SessionResponse>(['auth', 'session'])?.user.id === response.order.userId
 }

@@ -16,7 +16,7 @@ function setStatus(next: RealtimeStatus) {
 export const realtimeState = {
   getSnapshot: () => status,
   subscribe(listener: () => void) { listeners.add(listener); return () => { listeners.delete(listener) } },
-}
+    }
 let ready = false
 let current: { identity: string; client: QueryClient; refs: number; stop: () => void } | null = null
 export async function initializeRealtime() { await initializeSocketTransport(); ready = true }
@@ -58,7 +58,7 @@ export function retainRealtime(client: QueryClient, userId: string | null) {
         }
       } catch { /* Query retains the error; the same key can be retried. */ }
       finally { polling = false }
-    }
+      }
     const reconcile = () => {
       if (!valid()) return
       setStatus('connected')
@@ -86,18 +86,18 @@ export function retainRealtime(client: QueryClient, userId: string | null) {
     window.addEventListener('offline', offline)
     const timer = setInterval(() => { void poll() }, 1500)
     current = { identity, client, refs: 0, stop() {
-      active = false
-      sync.dispose()
-      socket.removeAllListeners()
-      socket.disconnect()
-      clearInterval(timer)
-      window.removeEventListener('online', online)
-      window.removeEventListener('offline', offline)
-      if (userId) {
-        void client.cancelQueries({ queryKey: orderKeys.byUser(userId) })
-        client.removeQueries({ queryKey: orderKeys.byUser(userId) })
-      }
-    } }
+        active = false
+        sync.dispose()
+        socket.removeAllListeners()
+        socket.disconnect()
+        clearInterval(timer)
+        window.removeEventListener('online', online)
+        window.removeEventListener('offline', offline)
+        if (userId) {
+          void client.cancelQueries({ queryKey: orderKeys.byUser(userId) })
+          client.removeQueries({ queryKey: orderKeys.byUser(userId) })
+        }
+      } }
     if (navigator.onLine) online()
     else setStatus('offline')
   }

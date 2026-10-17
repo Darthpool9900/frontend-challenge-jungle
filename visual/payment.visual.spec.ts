@@ -97,8 +97,8 @@ for (const viewport of [
     const checkoutButton = page
       .locator(".cart-summary")
       .getByRole("button", {
-        name: /Conectar e finalizar/,
-      });
+      name: /Conectar e finalizar/,
+    });
 
     await expect(
       checkoutButton,
@@ -152,10 +152,10 @@ for (const viewport of [
     await expect(page).toHaveScreenshot(
       `payment-${viewport.name}.png`,
       {
-        animations: "disabled",
-        caret: "hide",
-        maxDiffPixelRatio: 0.015,
+      animations: "disabled",
+      caret: "hide",
+      maxDiffPixelRatio: 0.015,
       },
     );
-  });
+    });
 }

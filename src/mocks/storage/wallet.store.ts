@@ -37,7 +37,7 @@ function readDatabase(): WalletDatabase {
           (
             wallet.kind === 'primary' ||
             wallet.kind === 'secondary'
-          )
+      )
       )
     }
 

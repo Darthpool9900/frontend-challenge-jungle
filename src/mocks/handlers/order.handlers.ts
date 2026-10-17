@@ -389,44 +389,44 @@ export const orderHandlers = [
   http.get(
     '/api/orders/by-key/:key',
     async ({ request, params }) => {
-      const auth = await requireAuth(request)
+    const auth = await requireAuth(request)
 
-      if (!auth.authorized) {
-        return auth.response
-      }
+    if (!auth.authorized) {
+      return auth.response
+    }
 
       const stored = findOrderByKey(
         auth.userId,
         String(params.key)
       )
 
-      if (!stored) {
+    if (!stored) {
         return apiError(
           404,
           'ORDER_NOT_FOUND',
           'Pedido não encontrado.'
         )
-      }
+    }
 
-      // Finalizar se o prazo já passou.
+    // Finalizar se o prazo já passou.
       const currentOrder = settleOrder(
         auth.userId,
         stored.order.id
       )
 
-      if (!currentOrder) {
+    if (!currentOrder) {
         return apiError(
           404,
           'ORDER_NOT_FOUND',
           'Pedido não encontrado.'
         )
-      }
+    }
 
-      const response: OrderResponse = {
-        order: currentOrder,
-      }
+    const response: OrderResponse = {
+      order: currentOrder,
+    }
 
-      return HttpResponse.json(response)
+    return HttpResponse.json(response)
     }
   ),
 
@@ -438,33 +438,33 @@ export const orderHandlers = [
   http.get(
     '/api/orders/:orderId',
     async ({ request, params }) => {
-      const auth = await requireAuth(request)
+    const auth = await requireAuth(request)
 
-      if (!auth.authorized) {
-        return auth.response
-      }
+    if (!auth.authorized) {
+      return auth.response
+    }
 
-      // A função valida o proprietário,
-      // verifica o prazo de processamento
-      // e retorna o estado atualizado.
+    // A função valida o proprietário,
+    // verifica o prazo de processamento
+    // e retorna o estado atualizado.
       const currentOrder = settleOrder(
         auth.userId,
         String(params.orderId)
       )
 
-      if (!currentOrder) {
+    if (!currentOrder) {
         return apiError(
           404,
           'ORDER_NOT_FOUND',
           'Pedido não encontrado.'
         )
-      }
+    }
 
-      const response: OrderResponse = {
-        order: currentOrder,
-      }
+    const response: OrderResponse = {
+      order: currentOrder,
+    }
 
-      return HttpResponse.json(response)
+    return HttpResponse.json(response)
     }
   ),
 ]

@@ -35,35 +35,35 @@ export const favoritesHandlers = [
   http.post(
     '/api/favorites/:nftId',
     async ({ request, params }) => {
-      const auth = await requireAuth(request)
+    const auth = await requireAuth(request)
 
-      if (!auth.authorized) {
-        return auth.response
-      }
+    if (!auth.authorized) {
+      return auth.response
+    }
 
-      const nftId = String(params.nftId ?? '')
-      const nft = getNftById(nftId)
+    const nftId = String(params.nftId ?? '')
+    const nft = getNftById(nftId)
 
-      if (!nft) {
-        return HttpResponse.json(
-          {
-            error: {
-              code: 'NFT_NOT_FOUND',
-              message: 'NFT não encontrado.',
-            },
+    if (!nft) {
+      return HttpResponse.json(
+        {
+          error: {
+            code: 'NFT_NOT_FOUND',
+            message: 'NFT não encontrado.',
           },
+        },
           { status: 404 }
-        )
-      }
+      )
+    }
 
-      addFavorite(auth.userId, nftId)
+    addFavorite(auth.userId, nftId)
 
-      const response: FavoriteMutationResponse = {
-        nftId,
-        isFavorite: true,
-      }
+    const response: FavoriteMutationResponse = {
+      nftId,
+      isFavorite: true,
+    }
 
-      return HttpResponse.json(response)
+    return HttpResponse.json(response)
     }
   ),
 
@@ -71,22 +71,22 @@ export const favoritesHandlers = [
   http.delete(
     '/api/favorites/:nftId',
     async ({ request, params }) => {
-      const auth = await requireAuth(request)
+    const auth = await requireAuth(request)
 
-      if (!auth.authorized) {
-        return auth.response
-      }
+    if (!auth.authorized) {
+      return auth.response
+    }
 
-      const nftId = String(params.nftId ?? '')
+    const nftId = String(params.nftId ?? '')
 
-      removeFavorite(auth.userId, nftId)
+    removeFavorite(auth.userId, nftId)
 
-      const response: FavoriteMutationResponse = {
-        nftId,
-        isFavorite: false,
-      }
+    const response: FavoriteMutationResponse = {
+      nftId,
+      isFavorite: false,
+    }
 
-      return HttpResponse.json(response)
+    return HttpResponse.json(response)
     }
   ),
 ]

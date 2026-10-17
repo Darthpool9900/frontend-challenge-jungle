@@ -32,9 +32,9 @@ export const orderService = {
       '/orders',
       input,
       {
-        headers: {
-          'Idempotency-Key': idempotencyKey,
-        },
+      headers: {
+        'Idempotency-Key': idempotencyKey,
+      },
       }
     )
 

@@ -18,18 +18,18 @@ const scenarioSchema = z.object({
 })
 
 export const orderScenarioHandlers = import.meta.env.VITE_ENABLE_MOCKS === 'true'
-  ? [
-      http.post(
-        '/api/__test/orders/scenario',
-        async ({ request }) => {
+    ? [
+    http.post(
+      '/api/__test/orders/scenario',
+      async ({ request }) => {
           const auth = await requireAuth(request)
 
           if (!auth.authorized) {
             return auth.response
           }
 
-          const body = await request.json()
-            .catch(() => null)
+        const body = await request.json()
+          .catch(() => null)
 
           const parsed = scenarioSchema.safeParse(body)
 
@@ -41,21 +41,21 @@ export const orderScenarioHandlers = import.meta.env.VITE_ENABLE_MOCKS === 'true
                   message: 'Cenário inválido.',
                 },
               },
-              { status: 422 }
+            { status: 422 }
             )
           }
 
           const database = getOrderDatabase()
 
-          database.scenarios[auth.userId] =
-            parsed.data.outcome
+        database.scenarios[auth.userId] =
+          parsed.data.outcome
 
           saveOrderDatabase(database)
 
           return HttpResponse.json({
             outcome: parsed.data.outcome,
           })
-        }
-      ),
-    ]
-  : []
+      }
+    ),
+      ]
+    : []

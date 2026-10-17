@@ -182,7 +182,7 @@ export const orderRecoveryService = {
     if (
       previous &&
       JSON.stringify(previous.input) !==
-        JSON.stringify(normalized)
+      JSON.stringify(normalized)
     ) {
       throw new Error(
         'Há um pagamento pendente. Recupere ou resolva a tentativa anterior antes de iniciar outra compra.'

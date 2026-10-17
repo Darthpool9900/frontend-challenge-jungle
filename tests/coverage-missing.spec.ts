@@ -32,19 +32,19 @@ async function addNft(page: Page, isMobile = false) {
 
 async function apiScenario(page: Page, path: string, payload: unknown) {
   return page.evaluate(async ({ path, payload }) => {
-    const token = localStorage.getItem("jungle.auth.token");
-    const response = await fetch(`/api${path}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      },
-      body: JSON.stringify(payload),
-    });
-    return {
-      status: response.status,
-      body: await response.json().catch(() => null),
-    };
+      const token = localStorage.getItem("jungle.auth.token");
+      const response = await fetch(`/api${path}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify(payload),
+      });
+      return {
+        status: response.status,
+        body: await response.json().catch(() => null),
+      };
   }, { path, payload });
 }
 
@@ -174,9 +174,9 @@ test.describe("Filtros combinados, estoque e edições", () => {
     await addNft(page);
     const patch = await page.evaluate(async () => {
       const response = await fetch("/api/__test/nfts/nft-001/editions/nft-001-edition-3", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ priceEth: "9.123" }),
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ priceEth: "9.123" }),
       });
       return response.status;
     });
@@ -439,7 +439,7 @@ test.describe("Pagamento e idempotência no fluxo visual", () => {
     await expect(page).toHaveURL(orderUrl);
     await expect(page.locator(".receipt-meta")).toBeVisible({ timeout: 15_000 });
     await expect(page.locator(".receipt-meta")).toContainText(/pending|confirmed|declined/);
-  });
+    });
 
   test("duplo clique não gera dois pedidos no MSW", async ({ page }) => {
     await prepareCheckout(page);

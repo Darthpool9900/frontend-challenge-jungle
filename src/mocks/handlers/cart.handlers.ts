@@ -402,7 +402,7 @@ export const cartHandlers = [
           !(
             item.nftId === String(params.nftId) &&
             item.editionId === String(params.editionId)
-          )
+      )
       )
 
       saveCartItems(owner, filtered)

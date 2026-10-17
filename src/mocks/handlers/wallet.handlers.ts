@@ -98,7 +98,7 @@ export const walletHandlers = [
     const duplicated = wallets.some(
       wallet =>
         wallet.address.toLowerCase() ===
-          input.address.toLowerCase() &&
+        input.address.toLowerCase() &&
         wallet.network === input.network
     )
 
@@ -142,89 +142,89 @@ export const walletHandlers = [
   http.patch(
     '/api/wallets/:walletId',
     async ({ request, params }) => {
-      const auth = await requireAuth(request)
+    const auth = await requireAuth(request)
 
-      if (!auth.authorized) {
-        return auth.response
-      }
+    if (!auth.authorized) {
+      return auth.response
+    }
 
-      const body = await request.json().catch(() => null)
-      const parsed = updateWalletSchema.safeParse(body)
+    const body = await request.json().catch(() => null)
+    const parsed = updateWalletSchema.safeParse(body)
 
-      if (!parsed.success) {
-        return errorResponse(
-          422,
-          'VALIDATION_ERROR',
+    if (!parsed.success) {
+      return errorResponse(
+        422,
+        'VALIDATION_ERROR',
           'Dados de atualização inválidos.'
-        )
-      }
+      )
+    }
 
-      const wallets = getWallets(auth.userId)
+    const wallets = getWallets(auth.userId)
 
       const wallet = wallets.find(
         item => item.id === String(params.walletId)
       )
 
-      if (!wallet) {
+    if (!wallet) {
         return errorResponse(
           404,
           'WALLET_NOT_FOUND',
           'Carteira não encontrada.'
         )
-      }
+    }
 
-      const input = parsed.data
+    const input = parsed.data
 
-      const nextAddress = input.address ?? wallet.address
-      const nextNetwork = input.network ?? wallet.network
+    const nextAddress = input.address ?? wallet.address
+    const nextNetwork = input.network ?? wallet.network
 
-      // Não permitir duplicação de endereço
-      // na mesma rede.
-      const duplicated = wallets.some(
+    // Não permitir duplicação de endereço
+    // na mesma rede.
+    const duplicated = wallets.some(
         item =>
-          item.id !== wallet.id &&
+        item.id !== wallet.id &&
           item.address.toLowerCase() ===
-            nextAddress.toLowerCase() &&
+          nextAddress.toLowerCase() &&
           item.network === nextNetwork
-      )
+    )
 
-      if (duplicated) {
-        return errorResponse(
-          409,
-          'WALLET_ALREADY_EXISTS',
+    if (duplicated) {
+      return errorResponse(
+        409,
+        'WALLET_ALREADY_EXISTS',
           'Esta carteira já está cadastrada.'
-        )
-      }
+      )
+    }
 
-      const now = new Date().toISOString()
+    const now = new Date().toISOString()
 
-      // Se trocar principal por secundária
-      // ou vice-versa, trocar os papéis.
-      if (input.kind && input.kind !== wallet.kind) {
-        const previousKind = wallet.kind
+    // Se trocar principal por secundária
+    // ou vice-versa, trocar os papéis.
+    if (input.kind && input.kind !== wallet.kind) {
+      const previousKind = wallet.kind
 
-        const occupied = wallets.find(
+      const occupied = wallets.find(
           item =>
             item.id !== wallet.id &&
             item.kind === input.kind
-        )
+      )
 
-        if (occupied) {
-          occupied.kind = previousKind
-          occupied.updatedAt = now
-        }
+      if (occupied) {
+        occupied.kind = previousKind
+        occupied.updatedAt = now
       }
+    }
 
-      Object.assign(wallet, input)
-      wallet.updatedAt = now
+    Object.assign(wallet, input)
+    wallet.updatedAt = now
 
-      saveWallets(auth.userId, wallets)
+    saveWallets(auth.userId, wallets)
 
-      const response: WalletMutationResponse = {
-        wallet,
-      }
+    const response: WalletMutationResponse = {
+      wallet,
+    }
 
-      return HttpResponse.json(response)
+    return HttpResponse.json(response)
     }
   ),
 ]

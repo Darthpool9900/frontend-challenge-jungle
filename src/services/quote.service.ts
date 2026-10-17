@@ -41,7 +41,7 @@ export const quoteService = {
     return data
   },
 
-  
+
   // Revalidar cotação antes do checkout
   async validate(
     quoteId: string
@@ -49,7 +49,7 @@ export const quoteService = {
     const { data } =
       await api.post<QuoteValidationResponse>(
         `/quotes/${encodeURIComponent(quoteId)}/validate`
-      )
+    )
 
     return data
   },

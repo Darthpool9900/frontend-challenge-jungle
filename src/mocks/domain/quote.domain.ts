@@ -152,8 +152,8 @@ export function calculateQuote(
   // ========================================
 
   const networkFee = storedItems.length > 0
-    ? new Decimal(networkFeesEth[input.network])
-    : new Decimal(0)
+      ? new Decimal(networkFeesEth[input.network])
+      : new Decimal(0)
 
   const total = subtotal
     .minus(discount)

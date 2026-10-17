@@ -11,7 +11,7 @@ const history: PublishedEvent[] = []
 export function subscribe(subscriber: Subscriber) {
   subscribers.add(subscriber)
   return () => { subscribers.delete(subscriber) }
-}
+  }
 export function publish(event: PublishedEvent, remember = true) {
   if (remember) {
     history.push(structuredClone(event))
@@ -21,16 +21,16 @@ export function publish(event: PublishedEvent, remember = true) {
 }
 export function publishNft(nft: NftDetail, edition: NftEdition) {
   publish({ name: 'nft.updated', data: {
-    eventId: crypto.randomUUID(), nftId: nft.id, editionId: edition.id,
-    version: nft.version, priceEth: edition.priceEth,
-    availableQuantity: edition.availableQuantity, occurredAt: new Date().toISOString(),
-  } })
+      eventId: crypto.randomUUID(), nftId: nft.id, editionId: edition.id,
+      version: nft.version, priceEth: edition.priceEth,
+      availableQuantity: edition.availableQuantity, occurredAt: new Date().toISOString(),
+    } })
 }
 export function publishOrder(order: Order) {
   publish({ name: 'order.updated', data: {
-    eventId: crypto.randomUUID(), orderId: order.id, userId: order.userId,
-    version: order.version, status: order.status, occurredAt: order.updatedAt,
-  } })
+      eventId: crypto.randomUUID(), orderId: order.id, userId: order.userId,
+      version: order.version, status: order.status, occurredAt: order.updatedAt,
+    } })
 }
 export const socketScenarios = {
   rejectConnections: false,

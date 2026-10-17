@@ -54,10 +54,10 @@ function RealtimeBootstrap() {
     let active = true
 
     void initializeRealtime().then(() => {
-      if (active) setReady(true)
+        if (active) setReady(true)
     }).catch((error: unknown) => {
-      console.error('Não foi possível iniciar o transporte realtime:', error)
-    })
+        console.error('Não foi possível iniciar o transporte realtime:', error)
+      })
 
     return () => {
       active = false

@@ -51,7 +51,7 @@ export function createSync(client: QueryClient, userId: string | null) {
       const version = Math.max(0, ...cachedOrders.map(order => order.version))
       if (!accept(`order:${event.orderId}`, event.eventId, event.version, version > event.version ? version : 0)) return
       await refresh([orderKeys.byUser(event.userId), ...commerce,
-        ...(event.status === 'confirmed' ? [nftKeys.all] : [])])
+      ...(event.status === 'confirmed' ? [nftKeys.all] : [])])
     },
     reconnect: () => refresh([nftKeys.all, ...commerce, ...(userId ? [orderKeys.byUser(userId)] : [])]),
   }

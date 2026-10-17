@@ -106,9 +106,9 @@ export function installHarness(client: QueryClient) {
       const gate = new Promise<void>(resolve => { release = resolve })
       let started = false
       worker.use(http.get(`/api/nfts/${id}`, async () => {
-        started = true
-        await gate
-        return HttpResponse.json(snapshot)
+            started = true
+            await gate
+            return HttpResponse.json(snapshot)
       }, { once: true }))
       void client.refetchQueries({ queryKey: nftDetailQueryOptions(id).queryKey })
       harness.releaseHeld = release
@@ -122,4 +122,4 @@ export function installHarness(client: QueryClient) {
 }
 declare global {
   interface Window { realtimeTest: ReturnType<typeof installHarness> }
-}
+  }
